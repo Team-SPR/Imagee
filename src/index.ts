@@ -1,7 +1,10 @@
 export default {
   async fetch(request, env) {
+    // Read the 'Prompt' header (case-insensitive)
+    const promptHeader = request.headers.get("Prompt") || "Create a picture of the cutest dog alive."; // fallback if header missing
+
     const inputs = {
-      prompt: "cyberpunk cat",
+      prompt: promptHeader,
     };
 
     const response = await env.AI.run(
